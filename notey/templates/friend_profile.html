@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feed</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/profile.css' %}">
+    <style>
+        #my_profile {
+            position: absolute;
+            top: 125px;
+            left: 300px;
+            width: 800px;
+            height: 700px;
+            border: 2px solid black;
+        }
+        textarea {
+            outline: 2px solid black;
+            width: 700px;
+            font-size: 20px;
+        }
+        .update {
+            height:35px;
+            width:50px;
+            position: relative;
+            top: 20px;
+            border: 1px solid black;
+            border-radius: 10px;
+            left: 630px;
+        }
+        #notebooks {
+            display: inline-block;
+            position: absolute;
+            left: 50px;
+            top: 450px;
+            height: 200px;
+            width: 700px;
+        }
+        h2 {
+            font-size: 30px;
+        }
+        h3 {
+            font-size: 25px;
+            
+        }
+        .title {
+            position: absolute;
+            left: 400px;
+            margin-top: -90px;
+            left: 200px;
+            margin-top: -30px;
+        }
+        .bio {
+            position: absolute;
+            left: 50px;
+            top: 50px;
+        }
+        .friend_bio {
+            font-size: 25px;
+            position: absolute;
+            top: 90px;
+            left: 50px;
+        }
+        a {
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>notey.</h1>
+    <a class = 'sep' href="/feed" style = 'right:300px;'>Back to Feed</a>
+    <a class = 'sep' href="/logout">Log Out</a>
+    <div id = 'my_profile' style= 'display: flex; justify-content: space-around;'>
+        <h2 class = 'bio'>Bio: </h2>
+        <p class = 'friend_bio'>{{my_friend.bio}}</p>
+        <div id = 'notebooks'>
+            <h2>{{my_friend.first_name}}'s Notebooks:</h2><br><br>
+            {% for notebook in my_friend.notebooks.all %}
+                {% if notebook.is_public == True %}
+                    <br><h3 class = 'title'><a href="/notebook/{{notebook.id}}">{{notebook.title}}</a></h3><br>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+
+</body>
+</html>

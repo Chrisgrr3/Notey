@@ -1,0 +1,40 @@
+* {
+    margin: 0px;
+    padding: 0px;
+}
+h1 {
+    display: inline-block;
+    font-size: 85px;
+    padding: 0px 25px;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+a {
+    display: inline-block;
+    font-size: 30px;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    color: black;
+}
+#notebook_sidebar {
+    display: inline-block;
+    position: absolute;
+    padding: 30px;
+    height:300px;
+    top:120px;
+    left:40px;
+    border: 2px solid black;
+    border-radius: 20px;
+}
+#notebook_sidebar a{
+    display: inline-block;
+}
+#notebook_sidebar h2{
+    font-size: 30px;
+}
+#notebook_sidebar button {
+    padding: 2px;
+    border: 1px solid black;
+    border-radius: 10px;
+    position:relative;
+    right: 20px;
+    top: -1px;
+}

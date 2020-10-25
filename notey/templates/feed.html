@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feed</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/feed.css' %}">
+    <style>
+        #friend_list {
+            padding: 20px;
+            width: 600px;
+            display: inline-block;
+            position: absolute;
+            top: 120px;
+            left: 350px;
+            border: 2px solid black;
+            border-radius: 20px;
+            min-height: 320px;
+        }
+        .shared {
+            position: absolute;
+            left:55px;
+        }
+    </style>
+</head>
+<body>
+    <h1>notey.</h1>
+    <a href="/logout" style = 'text-decoration: none; position: absolute; top:50px; right: 30px;'>Log Out</a>
+    <a href="/user/{{logged_in_user.id}}/me" style = "text-decoration: none; top:50px; right: 870px;">MyProfile</a>
+    <a href="/create/notebook" style = "position: absolute; top: 50px; right:160px;"><button style= "font-size: 20px; border: 2px solid black; border-radius: 20px; padding: 5px;">Create a Notebook</button></a>
+    <div id = "notebook_sidebar" style = 'height: auto'>
+        <h2>My Notebooks</h2>
+        {% for notebook in my_notebooks %}
+            <a href="/delete/{{notebook.id}}"><button>Del</button></a><a href="/notebook/{{notebook.id}}" style = 'line-height: 40px; text-decoration: none;'><h5>{{notebook.title}}</h5></a>
+            <br>
+        {% endfor %}
+        <br>
+        <h2>Shared Notebooks</h2>
+        {% for notebook in shared_notebooks %}
+            <a href="/notebook/{{notebook.id}}" style="margin-top: -20px;"><h5 class = 'shared'>{{notebook.title}}</h5></a><br><br>
+        {% endfor %}
+    </div>
+    <div id ='friend_list'>
+        <h2 style = 'font-size: 30px;'>My Friends</h2>
+        <form action="/process_friend" method="post">
+            {% csrf_token %}
+            <label style = 'position: relative; top: 230px;' for="email">Add Friend by Email:</label>
+            <input style = 'position: relative; top: 230px;' type="email" name="email" id="email">
+            <button style = 'position: relative; top: 230px;' type="submit">Add</button>
+        </form>
+    </div>
+</body>
+</html>

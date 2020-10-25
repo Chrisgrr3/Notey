@@ -1,0 +1,29 @@
+* {
+    margin: 0px;
+    padding: 0px;
+}
+h1 {
+    display: inline-block;
+    font-size: 85px;
+    padding: 0px 25px;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+#reg_container {
+    outline: 2px solid black;
+    padding: 25px;
+    line-height: 50px;
+    position: absolute;
+    top: 100px;
+    left: 400px;
+    right: 400px;
+}
+#reg_container label {
+    font-size: 25px;
+}
+#reg_container button {
+    position: relative;
+    left:400px;
+    padding: 7px;
+    border: 1px solid black;
+    border-radius: 20px;
+}

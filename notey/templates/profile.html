@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feed</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/profile.css' %}">
+    <style>
+        #my_profile {
+            position: absolute;
+            top: 125px;
+            left: 300px;
+            width: 800px;
+            height: 900px;
+            border: 2px solid black;
+        }
+        textarea {
+            outline: 2px solid black;
+            width: 700px;
+            font-size: 20px;
+        }
+        .update {
+            height:35px;
+            width:50px;
+            position: relative;
+            top: 20px;
+            border: 1px solid black;
+            border-radius: 10px;
+            left: 630px;
+        }
+        #notebooks {
+            display: inline-block;
+            position: absolute;
+            left: 50px;
+            top: 450px;
+            height: 400px;
+            width: 700px;
+        }
+        h2 {
+            font-size: 30px;
+        }
+        h3 {
+            font-size: 25px;
+            
+        }
+        .title {
+            position: absolute;
+            left: 200px;
+            margin-top: -30px;
+        }
+    </style>
+</head>
+<body>
+    <h1>notey.</h1>
+    <a class = 'sep' href="/feed" style = 'text-decoration: none; right:300px;'>Back to Feed</a>
+    <a class = 'sep' href="/logout" style = 'text-decoration: none;'>Log Out</a>
+    <div id = 'my_profile' style= 'display: flex; justify-content: space-around;'>
+        <form action="/update_bio/{{user.id}}" method="post">
+            {% csrf_token %}
+            <div style = 'position: relative;height: 300px; top: 50px;'>
+                <h2><label for="bio" style = >Bio: </label></h2><br><br>
+                <textarea name="bio" id="bio" cols="80" rows="10">{{user.bio}}</textarea><br>
+                <button type="submit" class = 'update'>Update</button>
+            </div>
+        </form>
+        <div id = 'notebooks'>
+            <h2>My Notebooks:</h2><br><br>
+            {% for notebook in my_notebooks %}
+                <br><h3 class = 'title'><a href="/notebook/{{notebook.id}}" style = 'text-decoration: none;'>{{notebook.title}}</a></h3><br>
+            {% endfor %}
+        </div>
+    </div>
+
+</body>
+</html>

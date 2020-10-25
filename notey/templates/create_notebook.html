@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create a Notebook</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/create_notebook.css' %}">
+</head>
+<body>
+    <h1>notey.</h1>
+    <a href="/logout">Log Out</a>
+    <a href="/feed" style = 'right:300px;'>Back to Feed</a>
+    <div id = 'create_notebook'>
+        <h2>Create a Notebook</h2>
+        <form action="/process_notebook" method="post">
+            {% csrf_token %}
+            <label for="title">Title:</label>
+            <input type="text" name="title" id="title"><br>
+            <h3>Public?</h3>
+            <label for="yes">Yes</label>
+            <input type="radio" name="type" id="yes" value ='True'>
+            <label for="no">No</label>
+            <input type="radio" name="type" id="no" value ='False'><br>
+            <button>Submit</button>
+        </form>
+    </div>
+</body>
+</html>

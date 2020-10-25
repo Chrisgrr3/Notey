@@ -1,0 +1,20 @@
+* {
+    margin: 0px;
+    padding: 0px;
+}
+h1 {
+    display: inline-block;
+    font-size: 85px;
+    padding: 0px 25px;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+.sep {
+    display: inline-block;
+    font-size: 30px;
+    padding: 0px 25px;
+    position: absolute;
+    top:50px;
+    right: 30px;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}

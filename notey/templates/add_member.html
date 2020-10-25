@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add a Member</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/add_member.css' %}">
+</head>
+<body>
+    <h1>notey.</h1>
+    <a href="/logout" style = 'text-decoration: none;'>Log Out</a>
+    <a href="/feed" style = 'right:300px; text-decoration: none;'>Back to Feed</a>
+    <div id = 'add_member'>
+        <h2>Add a Member to {{notebook.title}} Notebook...</h2>
+        <form action="/process_member/{{notebook.id}}" method="post">
+            {% csrf_token %}
+            <label for="add">Member Email:</label>
+            <input type="text" name="add" id="add">
+            <button>Add Member</button>
+        </form>
+    </div>
+</body>
+</html>

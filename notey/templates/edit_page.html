@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Page</title>
+    <style>
+        * {
+            margin: 0px;
+            padding: 0px;
+        }
+        h1 {
+            display: inline-block;
+            font-size: 85px;
+            padding: 0px 25px;
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+        }
+        a {
+            display: inline-block;
+            font-size: 30px;
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+        }
+        .add_page {
+            position: absolute;
+            top: 60px;
+            right: 170px;
+            padding: 5px;
+            border: 1px solid black;
+            border-radius: 10px;
+        }
+        #page {
+            width: 1005px;
+            border: 2px solid black;
+            height: 917px;
+            position: absolute;
+            top: 130px;
+            left: 200px;
+        }
+        textarea {
+            font-size: 25px;
+        }
+        button {
+            padding: 5px;
+            border: 1px solid black;
+            border-radius: 10px;
+            position: absolute;
+            top: -40px;
+            right: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>notey.</h1>
+    <h1 style = 'left: 200px; font-size: 30px;'><a href="/notebook/{{notebook.id}}" style = 'text-decoration: none;'>{{notebook.title}} Notebook</a>>>{{page.title}}</h1>
+    <a href="/feed" style = 'right:300px; text-decoration: none;'>Back to Feed</a>
+    <a href="/logout" style = 'position: absolute; top:50px; right: 30px; text-decoration: none;'>Log Out</a>
+    <a href="/notebook/{{notebook.id}}/add_page"><button class= 'add_page'>Add a Page</button></a>
+    <div id = 'page'>
+        <form action="/update_page/{{page.id}}/{{notebook.id}}" method = 'post'>
+            {% csrf_token %}
+            <textarea name="note" id="notes" cols="73" rows="31" value = '{{page.notes}}'>{{page.notes}}</textarea>
+            <button type="submit">Update</button>
+        </form>
+    </div>
+</body>
+</html>

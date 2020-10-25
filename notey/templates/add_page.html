@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add a Page</title>
+    <style>
+        * {
+            margin: 0px;
+            padding: 0px;
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+        }
+        h1 {
+            display: inline-block;
+            font-size: 85px;
+            padding: 0px 25px;
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+        }
+        a {
+            display: inline-block;
+            font-size: 30px;
+            padding: 0px 25px;
+            position: absolute;
+            top:50px;
+            right: 30px;
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+        }
+        #add_page {
+            position: absolute;
+            padding: 20px;
+            position: absolute;
+            top: 100px;
+            left: 400px;
+            right: 400px;
+            display: inline-block;
+            border: 2px solid black;
+            border-radius: 20px;
+            text-align: center;
+        }
+        #add_page label {
+            line-height: 50px;
+        }
+        #add_page button {
+            position: relative;
+            padding: 3px;
+            border: 1px solid black;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>notey.</h1>
+    <a href="/logout">Log Out</a>
+    <a href="/feed" style = 'right:300px;'>Back to Feed</a>
+    <div id = 'add_page'>
+        <h2>Add a Page to the {{this_notebook.title}} Notebook...</h2>
+        <form action="/process_page/{{this_notebook.id}}" method="post">
+            {% csrf_token %}
+            <label for="add_page">Page Title: </label>
+            <input type="text" name="page_title" id="add">
+            <button>Add Page</button>
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{notebook.title}} Notebook</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/notebook.css' %}">
+    <style>
+        .add_page {
+            position: absolute;
+            top: 60px;
+            right: 170px;
+            padding: 5px;
+            border: 1px solid black;
+            border-radius: 10px;
+            font-size: 20px;
+        }
+        h3 {
+            font-size: 30px;
+        }
+        h5 {
+            font-size: 25px;
+            margin-left: 10px;
+
+        }
+    </style>
+</head>
+<body>
+    <h1>notey.</h1>
+    <h1 style = 'left: 200px; font-size: 40px;'>{{notebook.title}} Notebook</h1>
+    <a class = 'sep' href="/feed" style = 'right:300px;text-decoration: none;'>Back to Feed</a>
+    <a class = 'sep' href="/logout" style = 'position: absolute; top:50px; right: 30px; text-decoration: none;'>Log Out</a>
+    <a class = 'sep' href="/notebook/{{notebook.id}}/add_page"><button class= 'add_page'>Add a Page</button></a>
+    {% if is_public %}
+        <div id = 'members' style ='display: inline-block; border: 2px solid black; height: auto; width: 150px;
+        border-radius: 10px; position: absolute; right:100px; top: 100px; padding: 30px; height: 400px;'>
+            <h3>Creator:</h3>
+            <a href="/user/{{notebook.creator.id}}" style = 'text-decoration: none;'><h5>{{notebook.creator.first_name}} {{notebook.creator.last_name}}</h5></a><br>
+            <h3 style = 'text-align: center;'>Members:</h3>
+            <a href="/notebook/{{notebook.id}}/add_member" class = 'add_member'><button style = "position: absolute; top: -500px; left: -170px; text-decoration: none;
+            border: 1px solid black; right: 20px; border-radius: 10px; padding: 3px; font-size: 20px;">Add a Member</button></a>
+            {% for member in members %}
+                <a href="/user/{{member.id}}" style = 'text-decoration: none;'><h5>{{member.first_name}} {{member.last_name}}</h5></a><br><br>
+            {% endfor %}
+        </div>
+    {% endif %}
+    <div class = 'pages' style= 'display: inline-block; border: 1px solid black; border-radius: 10px; padding: 25px; 
+    position: absolute; left:310px; top: 110px; width: 500px; height: 400px;'>
+        <h2>Pages:</h2>
+        {% if notebook.pages.first not in notebook.pages.all %}
+        <p style = 'font-size: 25px;'>It looks like there are no pages to this notebook! To add a page, click the 'Add a Page' button at the top of this page
+            or click <a style ='font-size: 25px; text-decoration: none;' href="/notebook/{{notebook.id}}/add_page">here</a>.
+        </p>
+        {% endif %}
+        {% if notebook.pages.first in notebook.pages.all %}
+            {% for page in notebook.pages.all %}
+                <a href="/notebook/{{notebook.id}}/{{page.id}}" style = 'text-decoration: none;'><h3>{{page.title}}</h3></a><br>
+            {% endfor %}
+        {% endif %}
+    </div>
+</body>
+</html>
