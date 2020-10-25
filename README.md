@@ -1,1 +1,1 @@
-"# Notey" 
+This application is useful for creating notebooks that pertain to specific subjects, and within those notebooks, users and their friends can add pages. This allows users to organize material based on the subject matter, and allows multiple users to collaborate in note-taking.
